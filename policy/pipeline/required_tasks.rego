@@ -1,5 +1,7 @@
 package policy.pipeline.required_tasks
 
+import future.keywords.in
+
 import data.lib
 
 # Note: I created the required_task_refs list by plucking out the testing
@@ -46,4 +48,22 @@ deny[result] {
 
 	# Pass back the usual result map
 	result := lib.result_helper(rego.metadata.chain(), [lib.quoted_values_string(missing)])
+}
+
+# METADATA
+# title: Pipeline does not include the 'new-scanner' task
+# description: |-
+#   This is a dummy rule for demoing a rule with an effective date in the future.
+#
+#   Notice the effective date is Sep 1st.
+#
+# custom:
+#   short_name: new_scanner
+#   failure_msg: Required task %s was not found in the pipeline's task list
+#   effective_on: 2022-09-01T00:00:00Z
+#
+deny[result] {
+	found := {t | t := input.spec.tasks[_].taskRef.name}
+	not "new-scanner" in found
+	result := lib.result_helper(rego.metadata.chain(), ["new-scanner"])
 }

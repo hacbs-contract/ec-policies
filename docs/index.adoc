@@ -41,7 +41,22 @@ The matching is done using the taskRef name rather than the pipeline task name.
 <ul>
 <li>Path: <code>data.policy.pipeline.required_tasks.deny</code></li>
 <li>Failure message: <code>Required tasks %s were not found in the pipeline's task list</code></li>
-<li><a href="https://github.com/hacbs-contract/ec-policies/blob/main/policy/pipeline/required_tasks.rego#L31">Source</a></li>
+<li><a href="https://github.com/hacbs-contract/ec-policies/blob/main/policy/pipeline/required_tasks.rego#L33">Source</a></li>
+</ul>
+++++
+
+==== `[new_scanner]` Pipeline does not include the 'new-scanner' task
+
+This is a dummy rule for demoing a rule with an effective date in the future.
+
+Notice the effective date is Sep 1st.
+
+++++
+<ul>
+<li>Path: <code>data.policy.pipeline.required_tasks.deny</code></li>
+<li>Failure message: <code>Required task %s was not found in the pipeline's task list</code></li>
+<li>Effective from: <code>Thu, 01 Sep 2022 00:00:00 +0000</code></li>
+<li><a href="https://github.com/hacbs-contract/ec-policies/blob/main/policy/pipeline/required_tasks.rego#L65">Source</a></li>
 </ul>
 ++++
 

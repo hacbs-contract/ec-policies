@@ -17,6 +17,7 @@ all_required_task_refs := [
 	"sanity-label-check",
 	"sast-go",
 	"sast-java-sec-check",
+	"new-scanner",
 ]
 
 all_bar_two := array.slice(all_required_task_refs, 2, count(all_required_task_refs))
@@ -31,7 +32,7 @@ test_failing {
 		"code": "required_tasks",
 		"effective_on": "2022-01-01T00:00:00Z",
 		"msg": "Required tasks 'clamav-scan', 'conftest-clair' were not found in the pipeline's task list",
-	}}) with input.kind as "Pipeline" with input.spec.tasks as mock_taskref_data(all_bar_two)
+	}}) with input.kind as "Pipeline" with input.spec.tasks as mock_taskref_data(all_bar_two) with data.config as {}
 }
 
 test_edge_cases {
